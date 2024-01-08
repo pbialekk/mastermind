@@ -8,11 +8,14 @@ pub fn gen_shape(shape: &Shape, answer: Option<Answer>) -> impl Widget + '_ {
     Canvas::default()
         .block(
             Block::default()
-                .title((if let Some(answer) = answer {
+                .title(
+                    (if let Some(answer) = answer {
                         answer.to_string()
                     } else {
                         "Generated shape".to_string()
-                    }).to_string())
+                    })
+                    .to_string(),
+                )
                 .borders(Borders::ALL),
         )
         .x_bounds([10., 210.])
