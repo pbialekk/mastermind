@@ -403,7 +403,6 @@ impl App {
 }
 impl Default for App {
     fn default() -> Self {
-        use std::env;
         Self {
             should_quit: false,
             won_game: false,
