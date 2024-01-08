@@ -411,7 +411,7 @@ impl Default for App {
             current_tab: Menu::default(),
             current_tab_option: MenuOption::default(),
             previous_shapes: Vec::new(),
-            judge: Judge::new(env::args().any(|arg| arg == "--hardcore")),
+            judge: Judge::new(),
         }
     }
 }
