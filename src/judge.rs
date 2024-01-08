@@ -96,7 +96,7 @@ impl Judge {
             // answer = best_answer;
         }
         // self.available = self.erase_unavailable(&shape, &answer);
-        self.judge_history.push((shape.clone(), answer));
+        self.judge_history.push((*shape, answer));
         answer
     }
 }

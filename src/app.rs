@@ -1,11 +1,10 @@
-use std::iter::repeat;
-
 use ratatui::widgets::canvas::Context;
 
 use crate::judge::Judge;
 
-#[derive(Clone, Copy, Debug)]
+#[derive(Clone, Copy, Debug, Default)]
 pub enum Menu {
+    #[default]
     Figure,
     Color,
     DotPosition,
@@ -47,11 +46,7 @@ impl Menu {
         }
     }
 }
-impl Default for Menu {
-    fn default() -> Self {
-        Menu::Figure
-    }
-}
+
 impl MenuOption {
     pub fn next_option(&mut self) {
         match self {
@@ -76,20 +71,23 @@ impl Default for MenuOption {
     }
 }
 
-#[derive(Clone, Copy, Debug, PartialEq)]
+#[derive(Clone, Copy, Debug, PartialEq, Default)]
 pub enum Figure {
+    #[default]
     Circle,
     Rectangle,
     Triangle,
 }
-#[derive(Clone, Copy, Debug, PartialEq)]
+#[derive(Clone, Copy, Debug, PartialEq, Default)]
 pub enum Color {
+    #[default]
     Red,
     Green,
     Blue,
 }
-#[derive(Clone, Copy, Debug, PartialEq)]
+#[derive(Clone, Copy, Debug, PartialEq, Default)]
 pub enum DotPosition {
+    #[default]
     Left,
     Middle,
     Right,
@@ -174,21 +172,7 @@ impl DotPosition {
         }
     }
 }
-impl Default for Figure {
-    fn default() -> Self {
-        Figure::Circle
-    }
-}
-impl Default for Color {
-    fn default() -> Self {
-        Color::Red
-    }
-}
-impl Default for DotPosition {
-    fn default() -> Self {
-        DotPosition::Left
-    }
-}
+
 impl std::fmt::Display for Figure {
     fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> std::fmt::Result {
         match self {
@@ -231,11 +215,7 @@ impl Answer {
 }
 impl std::fmt::Display for Answer {
     fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> std::fmt::Result {
-        write!(
-            f,
-            "{}",
-            repeat("✔ ").take(self.correct as usize).collect::<String>()
-        )
+        write!(f, "{}", "✔ ".repeat(self.correct as usize))
     }
 }
 
@@ -418,9 +398,7 @@ impl App {
         }
     }
     pub fn guide(&self) -> String {
-        format!(
-            "Your goal is to guess the hidden shape using as little queries as possible. Use the arrow keys to select a property of the shape / switch between properties. Press Enter to submit the shape. In a response, you will be given the number of properties which match between your shape, and the hidden one. Press Q to quit the game."
-        )
+        "Your goal is to guess the hidden shape using as little queries as possible. Use the arrow keys to select a property of the shape / switch between properties. Press Enter to submit the shape. In a response, you will be given the number of properties which match between your shape, and the hidden one. Press Q to quit the game.".to_string()
     }
 }
 impl Default for App {
