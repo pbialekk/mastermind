@@ -37,7 +37,7 @@ pub fn render(app: &App, f: &mut Frame) {
                 Constraint::Length(3),
                 Constraint::Length(3),
                 Constraint::Length(14),
-                Constraint::Length(10),
+                Constraint::Length(12),
                 Constraint::Min(0),
             ]
             .as_ref(),
