@@ -71,21 +71,21 @@ impl Default for MenuOption {
     }
 }
 
-#[derive(Clone, Copy, Debug, PartialEq, Default)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, Default)]
 pub enum Figure {
     #[default]
     Circle,
     Rectangle,
     Triangle,
 }
-#[derive(Clone, Copy, Debug, PartialEq, Default)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, Default)]
 pub enum Color {
     #[default]
     Red,
     Green,
     Blue,
 }
-#[derive(Clone, Copy, Debug, PartialEq, Default)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, Default)]
 pub enum DotPosition {
     #[default]
     Left,
@@ -201,7 +201,7 @@ impl std::fmt::Display for DotPosition {
     }
 }
 
-#[derive(Clone, Copy, Debug, Default)]
+#[derive(Clone, Copy, Debug, Default, PartialEq, Hash, Eq)]
 pub struct Answer {
     pub correct: u8,
 }
@@ -219,7 +219,7 @@ impl std::fmt::Display for Answer {
     }
 }
 
-#[derive(Clone, Copy, Debug, Default)]
+#[derive(Clone, Copy, Debug, Default, PartialEq, Hash, Eq)]
 pub struct Shape {
     pub figure: Figure,
     pub color: Color,

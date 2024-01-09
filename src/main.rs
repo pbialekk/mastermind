@@ -1,6 +1,7 @@
 pub mod app;
 pub mod judge;
 pub mod run;
+pub mod solver;
 pub mod tui;
 pub mod ui;
 pub mod update;
