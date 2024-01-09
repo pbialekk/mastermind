@@ -398,7 +398,7 @@ impl App {
         }
     }
     pub fn guide(&self) -> String {
-        "Your goal is to guess the hidden shape using as little queries as possible. Use the arrow keys to select a property of the shape / switch between properties. Press Enter to submit the shape. In a response, you will be given the number of properties which match between your shape, and the hidden one. Press Q to quit the game.".to_string()
+        "Your goal is to guess the hidden shape using as little queries as possible. Use the arrow keys to select a property of the shape / switch between properties. Press Enter to submit the shape. In a response, you will be given the number of properties which match between your shape, and the hidden one. Press Q to quit the game. If you want to turn on ''hardcore'' mode run the app with --hardcore switch.".to_string()
     }
 }
 impl Default for App {
