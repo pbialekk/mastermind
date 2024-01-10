@@ -52,13 +52,13 @@ fn get_available_answers(ans_hist: &Vec<(Shape, Answer)>) -> Vec<Shape> {
     let binding = get_all_shapes();
     for shape in binding.iter() {
         if is_viable(shape, ans_hist) {
-            ans.push(shape.clone());
+            ans.push(*shape);
         }
     }
     ans
 }
 
-fn dfs(mut ans_hist: &mut Vec<(Shape, Answer)>) -> u8 {
+fn dfs(ans_hist: &mut Vec<(Shape, Answer)>) -> u8 {
     let mut mx = u8::max_value();
     let maybe = get_available_answers(ans_hist);
     if maybe.len() == 1 {
@@ -73,8 +73,8 @@ fn dfs(mut ans_hist: &mut Vec<(Shape, Answer)>) -> u8 {
 
             ans_hist.push((shape, answ));
 
-            if is_valid_history(&ans_hist) {
-                shape_mx = shape_mx.max(1 + dfs(&mut ans_hist));
+            if is_valid_history(ans_hist) {
+                shape_mx = shape_mx.max(1 + dfs(ans_hist));
             }
 
             ans_hist.pop();
@@ -85,7 +85,7 @@ fn dfs(mut ans_hist: &mut Vec<(Shape, Answer)>) -> u8 {
 }
 
 fn is_valid_history(ans_hist: &Vec<(Shape, Answer)>) -> bool {
-    return get_available_answers(ans_hist).len() != 0;
+    !get_available_answers(ans_hist).is_empty()
 }
 
 pub fn get_min_dep(ans_hist: &Vec<(Shape, Answer)>) -> Option<u8> {
