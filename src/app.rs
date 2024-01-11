@@ -116,6 +116,9 @@ impl Figure {
             _ => panic!("Impossible"),
         }
     }
+    pub fn get_all_figures() -> Vec<Self> {
+        vec![Figure::Circle, Figure::Rectangle, Figure::Triangle]
+    }
 }
 impl Color {
     pub fn next_option(&mut self) {
@@ -147,6 +150,9 @@ impl Color {
             _ => panic!("Impossible"),
         }
     }
+    pub fn get_all_colors() -> Vec<Self> {
+        vec![Color::Red, Color::Green, Color::Blue]
+    }
 }
 impl DotPosition {
     pub fn next_option(&mut self) {
@@ -170,6 +176,9 @@ impl DotPosition {
             2 => DotPosition::Right,
             _ => panic!("Impossible"),
         }
+    }
+    pub fn get_all_dot_positions() -> Vec<Self> {
+        vec![DotPosition::Left, DotPosition::Middle, DotPosition::Right]
     }
 }
 
@@ -211,6 +220,9 @@ impl Answer {
     }
     pub fn set_correct(&mut self, correct: u8) {
         self.correct = correct;
+    }
+    pub fn max() -> u8 {
+        4
     }
 }
 impl std::fmt::Display for Answer {
@@ -305,6 +317,24 @@ impl Shape {
                 }
             };
         }
+    }
+    pub fn get_all_shapes() -> Vec<Self> {
+        let mut ans = Vec::new();
+        for figure in Figure::get_all_figures() {
+            for color in Color::get_all_colors() {
+                for dot_position in DotPosition::get_all_dot_positions() {
+                    for dot_color in Color::get_all_colors() {
+                        ans.push(Self {
+                            figure,
+                            color,
+                            dot_position,
+                            dot_color,
+                        });
+                    }
+                }
+            }
+        }
+        ans
     }
 }
 

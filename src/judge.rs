@@ -43,7 +43,7 @@ impl Judge {
         let mut answer = Answer::default();
         let mut best_answer = answer;
         let mut best_answer_dep = u8::min_value();
-        for _ans in 0..=4 {
+        for _ans in 0..=Answer::max() {
             self.judge_history.push((*shape, answer));
             if let Some(dep) = solver::get_min_dep(&self.judge_history) {
                 if dep > best_answer_dep {

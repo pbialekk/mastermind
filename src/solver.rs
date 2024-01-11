@@ -17,28 +17,6 @@ fn get_available_answers(ans_hist: &Vec<(Shape, Answer)>) -> Vec<Shape> {
         }
         ans
     }
-    fn get_all_shapes() -> Vec<Shape> {
-        let mut ans = Vec::new();
-        const FIGURES: [Figure; 3] = [Figure::Circle, Figure::Rectangle, Figure::Triangle];
-        const COLORS: [Color; 3] = [Color::Blue, Color::Green, Color::Red];
-        const DOT_POSITIONS: [DotPosition; 3] =
-            [DotPosition::Left, DotPosition::Middle, DotPosition::Right];
-        for figure in FIGURES.iter() {
-            for color in COLORS.iter() {
-                for dot_position in DOT_POSITIONS.iter() {
-                    for dot_color in COLORS.iter() {
-                        ans.push(Shape {
-                            figure: *figure,
-                            color: *color,
-                            dot_position: *dot_position,
-                            dot_color: *dot_color,
-                        });
-                    }
-                }
-            }
-        }
-        ans
-    }
     fn is_viable(shape: &Shape, ans_hist: &Vec<(Shape, Answer)>) -> bool {
         for (s, ans) in ans_hist {
             if get_intersection(shape, s) != ans.correct {
@@ -49,8 +27,7 @@ fn get_available_answers(ans_hist: &Vec<(Shape, Answer)>) -> Vec<Shape> {
     }
 
     let mut ans = Vec::new();
-    let binding = get_all_shapes();
-    for shape in binding.iter() {
+    for shape in Shape::get_all_shapes().iter() {
         if is_viable(shape, ans_hist) {
             ans.push(*shape);
         }
@@ -67,7 +44,7 @@ fn dfs(ans_hist: &mut Vec<(Shape, Answer)>) -> u8 {
 
     for shape in maybe {
         let mut shape_mx = u8::min_value();
-        for ans in 0..=4 {
+        for ans in 0..=Answer::max() {
             let mut answ = Answer::default();
             answ.set_correct(ans);
 
