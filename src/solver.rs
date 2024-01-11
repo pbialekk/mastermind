@@ -1,4 +1,4 @@
-use crate::app::{Answer, Color, DotPosition, Figure, Shape};
+use crate::app::{Answer, Shape};
 
 fn get_available_answers(ans_hist: &Vec<(Shape, Answer)>) -> Vec<Shape> {
     fn get_intersection(a: &Shape, b: &Shape) -> u8 {
